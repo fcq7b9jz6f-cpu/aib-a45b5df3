@@ -4,7 +4,7 @@
 
 import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import { HashRouter, Routes, Route, Link, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Play, Music, Image as ImageIcon, BookOpen, ArrowDown } from "lucide-react";
 
@@ -28,7 +28,7 @@ const content = {
     { src: "https://images.unsplash.com/photo-1526413227220-4a841261d763?q=80&w=800&auto=format&fit=crop", style: { gridColumn: "span 2", gridRow: "span 2" } },
     { src: "https://images.unsplash.com/photo-1549421522-386d3a8a3a2a?q=80&w=800&auto=format&fit=crop", style: {} },
     { src: "https://images.unsplash.com/photo-1519502523298-5f25ff41a84c?q=80&w=800&auto=format&fit=crop", style: {} },
-    { src: "https://images.unsplash.com/photo-1510906594845-59d45a049493?q=80&w=800&auto=format&fit=crop", style: { gridRow: "span 2" } },
+    { src: "https://images.unsplash.com/photo-1510906594845-59d459d45a049493?q=80&w=800&auto=format&fit=crop", style: { gridRow: "span 2" } },
     { src: "https://images.unsplash.com/photo-1516558836529-74e50338f323?q=80&w=800&auto=format&fit=crop", style: {} },
     { src: "https://images.unsplash.com/photo-1517588970462-9d32d431f3c1?q=80&w=800&auto=format&fit=crop", style: { gridColumn: "span 2" } },
   ]
@@ -66,12 +66,12 @@ const ScrollToTop = () => {
   return null;
 };
 
-const AnimatedItem = ({ children, className }) => {
+const AnimatedItem = ({ children, className, style }) => {
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px 0px" });
 
     return (
-        <div ref={ref} className={className} data-animate data-in={isInView}>
+        <div ref={ref} className={className} style={style} data-animate data-in={isInView}>
             {children}
         </div>
     );
@@ -331,9 +331,9 @@ const App = () => {
 };
 
 const Main = () => (
-    <HashRouter>
+    <BrowserRouter>
         <App />
-    </HashRouter>
+    </BrowserRouter>
 );
 
 createRoot(document.getElementById("root")).render(<Main />);
